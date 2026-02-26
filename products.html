@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Our Products | Shop R Us</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>SHOP R US PRODUCT CATALOG</h1>
+    <p><i>Corporate Identity: Authenticity Delivered</i></p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html">Our Products</a>
+    <a href="media.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="container product-page-container">
+    <div class="product-list">
+      <h2 class="section-title">Premium Selection</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product Description</th>
+            <th>Price (GH₵)</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="product-table">
+          <tr>
+            <td>Handcrafted Kente Cloth</td>
+            <td>1200.00</td>
+            <td><button class="add-btn" onclick="addToCart('Kente Cloth', 1200)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Organic Cocoa Butter</td>
+            <td>85.00</td>
+            <td><button class="add-btn" onclick="addToCart('Cocoa Butter', 85)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Traditional Leather Sandals</td>
+            <td>150.00</td>
+            <td><button class="add-btn" onclick="addToCart('Leather Sandals', 150)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Beaded Statement Necklace</td>
+            <td>210.00</td>
+            <td><button class="add-btn" onclick="addToCart('Beaded Necklace', 210)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Woven Bolga Basket</td>
+            <td>120.00</td>
+            <td><button class="add-btn" onclick="addToCart('Bolga Basket', 120)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Organic Shea Butter Balm</td>
+            <td>45.00</td>
+            <td><button class="add-btn" onclick="addToCart('Shea Butter', 45)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Ghanaian Black Soap</td>
+            <td>60.00</td>
+            <td><button class="add-btn" onclick="addToCart('Black Soap', 60)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Custom Brass Gold-Weights</td>
+            <td>350.00</td>
+            <td><button class="add-btn" onclick="addToCart('Brass Weights', 350)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Recycled Glass Bead Set</td>
+            <td>180.00</td>
+            <td><button class="add-btn" onclick="addToCart('Glass Beads', 180)">Add to Cart</button></td>
+          </tr>
+          <tr>
+            <td>Adinkra Symbol Wall Art</td>
+            <td>280.00</td>
+            <td><button class="add-btn" onclick="addToCart('Wall Art', 280)">Add to Cart</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <aside class="cart-sidebar">
+      <h3>🛒 Your Shopping Cart</h3>
+      <div id="cart-contents">
+        <p style="color: #999;">Your cart is empty.</p>
+      </div>
+      <div class="total-box">
+        Total: GH₵ <span id="cart-total">0.00</span>
+      </div>
+      <button class="submit-btn" style="margin-top: 15px;" onclick="checkout()">Proceed to Checkout</button>
+    </aside>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      total += price;
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartDiv = document.getElementById('cart-contents');
+      const totalSpan = document.getElementById('cart-total');
+
+      if (cart.length === 0) {
+        cartDiv.innerHTML = '<p style="color: #999;">Your cart is empty.</p>';
+      } else {
+        cartDiv.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>GH₵ ${item.price.toFixed(2)}</span>
+                    </div>
+                `).join('');
+      }
+      totalSpan.innerText = total.toFixed(2);
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+      } else {
+        alert("Order placed! Total: GH₵ " + total.toFixed(2) + "\nPlease contact us at ShopsRUscustomercare@gmail.com to finalize payment.");
+        cart = [];
+        total = 0;
+        updateCartDisplay();
+      }
+    }
+  </script>
+
+  <footer>
+    <p>&copy; 2021-2026 Shop R Us Ghana | Simplicity and Affordability</p>
+    <p><a href="https://www.ghanaweb.com" style="color: #ffcc00;" target="_blank">Industry Partner Reference</a></p>
+  </footer>
+
+</body>
+
+</html>
